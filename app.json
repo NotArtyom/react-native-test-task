@@ -1,0 +1,17 @@
+{
+  "name": "umschool",
+  "displayName": "umschool",
+  "expo": {
+    "name": "umschool",
+    "slug": "umschool",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
