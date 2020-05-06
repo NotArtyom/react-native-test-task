@@ -28,7 +28,7 @@ export const refreshTokenAction = () => (dispatch) => {
   dispatch({
     type: consts.RequestedTokenRefresh
   });
-  fetch('https://umschool.online/api/auth/refresh', {
+  fetch('https://umschool.online/api/auth/refresh/', {
     method: 'POST', headers: {
       'Content-Type': 'application/json',
       'token': AsyncStorage.getItem('token')
@@ -52,10 +52,10 @@ export const verifyTokenAction = () => (dispatch) => {
   dispatch({
     type: consts.RequestedTokenRefresh
   });
-  fetch('https://umschool.online/api/auth/verify', {
+  fetch('https://umschool.online/api/auth/verify/', {
     method: 'POST', headers: {
       'Content-Type': 'application/json',
-      'token': localStorage.getItem('token')
+      'Authorization': ' JWT'+AsyncStorage.getItem('token')
     },
   }).then(data => { return data.json();})
     .then((data) => {

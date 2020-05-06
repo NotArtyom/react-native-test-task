@@ -28,7 +28,7 @@ function Auth (props) {
         <View style={ styles.inputContainer }>
           <TextInput style={ styles.input } name="email" onChangeText={ email => setEmail(email) } placeholder='Электронная почта'/>
           <TextInput style={ styles.input } name="password" onChangeText={ pass => setPass(pass) } placeholder='Пароль' secureTextEntry/>
-          <Text>{wrong}</Text>
+          {wrong!=='' && <Text>{wrong}</Text>}
           <Text style={ styles.forgotPass }> Забыли пароль? </Text>
         </View>
       </View>
@@ -36,8 +36,11 @@ function Auth (props) {
         <TouchableOpacity style={ styles.logButton } onPress={handleSubmit }>
         <Text style={ styles.logButtonText }>Войти</Text>
         </TouchableOpacity>
-        <View style={ styles.vkButton }>
+        <TouchableOpacity style={ styles.vkButton }>
           <Text style={ styles.vkButtonText }>Войти через ВКонтакте</Text>
+        </TouchableOpacity>
+        <View style={styles.regView}>
+          <Text style={{color: '#F36900'}}>Зарегистрироваться</Text>
         </View>
       </View>
     </View>
@@ -115,6 +118,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 28,
+    maxHeight: 56,
+    flex:1
   },
   logButtonText: {
     fontWeight: 'bold',
@@ -130,11 +135,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: 56,
+    maxHeight: 56,
+    flex: 1
   },
   vkButtonText: {
     fontWeight: 'bold',
     fontSize: 16,
     color:'#45668E'
+  },
+  regView: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    flex: 2,
+    paddingBottom: 20
   }
 });
 
