@@ -29,15 +29,15 @@ export  const authReducer = (state = initState, action) => {
       };
     }
   }
-  return state;
+   return state;
 };
 
 export const verifyReducer = (state = initState, action) => {
   switch (action.type) {
-    case consts.RequestedCredentials: {
+    case consts.RequestedTokenVerify: {
       return {...state, fetching: true};
     }
-    case consts.ReceivedCredentials: {
+    case consts.ReceivedTokenVerify: {
       return {
         ...state,
         verified: true,
@@ -45,7 +45,7 @@ export const verifyReducer = (state = initState, action) => {
         fetched: true,
       };
     }
-    case consts.RejectedCredentials: {
+    case consts.RejectedTokenVerify: {
       return {
         ...state,
         error: action.payload,
@@ -59,10 +59,10 @@ export const verifyReducer = (state = initState, action) => {
 
 export const refreshReducer = (state = initState, action) => {
     switch (action.type) {
-      case consts.RequestedCredentials: {
+      case consts.RequestedTokenRefresh: {
         return {...state, fetching: true};
       }
-      case consts.ReceivedCredentials: {
+      case consts.ReceivedTokenRefresh: {
         return {
           ...state,
           refreshed: true,
@@ -70,7 +70,7 @@ export const refreshReducer = (state = initState, action) => {
           fetched: true,
         };
       }
-      case consts.RejectedCredentials: {
+      case consts.RejectedTokenRefresh: {
         return {
           ...state,
           error: action.payload,

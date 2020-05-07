@@ -12,8 +12,12 @@ export const authAction = ({username, password}) => (dispatch) => {
   }).then(data => { return data.json();})
     .then(async (data) => {
       if (data.token) {
-        await AsyncStorage.setItem('token', data.token);
-        console.log(data.token);
+        try {
+          console.log('Authenticated');
+          await AsyncStorage.setItem('token', data.token);
+        } catch (e) {
+          console.log('Error with saving data')
+        }
       } else {throw 'Wrong Credentials';}
       dispatch({
         type: consts.ReceivedCredentials,
@@ -39,9 +43,9 @@ export const refreshTokenAction = ({token}) => (dispatch) => {
     .then(async (data) => {
       if (data.token) {
         await AsyncStorage.setItem('token', data.token);
+        console.log('Refreshed Token');
         console.log(data.token);
       } else {throw 'Token was not verified';}
-        console.log(data);
       dispatch({
         type: consts.ReceivedTokenRefresh,
         payload: data
@@ -56,22 +60,22 @@ export const refreshTokenAction = ({token}) => (dispatch) => {
 
 export const verifyTokenAction = ({token}) => (dispatch) => {
   dispatch({
-    type: consts.RequestedTokenRefresh
+    type: consts.RequestedTokenVerify
   });
   fetch('https://umschool.online/api/auth/verify/', {
     method: 'POST', headers: {
       'Content-Type': 'application/json',
     }, body: JSON.stringify({'token':token})
   }).then(data => { return data.json();})
-    .then(async (data) => {
-      console.log(data);
+    .then((data) => {
+      console.log('Verified Token');
       dispatch({
-        type: consts.ReceivedTokenRefresh,
+        type: consts.ReceivedTokenVerify,
         payload: data
       });
     }).catch(err => {
     dispatch({
-      type: consts.RejectedTokenRefresh,
+      type: consts.RejectedTokenVerify,
       payload: err
     });
   });

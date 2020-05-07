@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Image, ImageBackground, View } from 'react-native';
-import { AsyncStorage } from 'react-native-web';
+import { AsyncStorage } from 'react-native';
 import { refreshTokenAction } from '../store/actions/authAction';
 import { verifyTokenAction } from '../store/actions/authAction';
 import { connect } from 'react-redux';
@@ -12,8 +12,6 @@ function Hello (props) {
     try {
       await AsyncStorage.getItem('token')
         .then(value => {
-          console.log('token found');
-          console.log(value);
           props.refreshTokenAction({token: value});
           props.verifyTokenAction({token: value});
         });
@@ -26,10 +24,10 @@ function Hello (props) {
   React.useEffect(() => {
       if (!proceeded) {
         getItem().then(setProceeded(true));
-        if (props.refresh.fetched && props.verify.fetched) {
-          props.navigation.push('Subject');
-        }
       }
+    if (props.refresh.fetched && props.verify.fetched) {
+      props.navigation.push('Subject');
+    }
     }
   );
   return (

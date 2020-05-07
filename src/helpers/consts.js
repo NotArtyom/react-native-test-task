@@ -12,4 +12,8 @@ export default keyMirror({
   RejectedTokenVerify: null,
   RequestedTokenVerify: null,
   ReceivedTokenVerify: null,
+
+  RejectedLessons: null,
+  RequestedLessons: null,
+  ReceivedLessons: null,
 });

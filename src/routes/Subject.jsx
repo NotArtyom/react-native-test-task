@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Picker, TouchableOpacity } from 'react-native';
 import { subjects } from '../helpers/subjects';
 import { useState } from 'react';
 
-function Subject () {
+function Subject (props) {
 
   const [selectedClass, setSelectedClass] = React.useState('11 класс');
   return (
@@ -25,9 +25,12 @@ function Subject () {
         <Picker.Item label="2" value="2 класс"/>
         <Picker.Item label="1" value="1 класс"/>
       </Picker>
-      <View style={styles.subjectsContainer}>
+      <View style={ styles.subjectsContainer }>
         <SubjectList props={ subjects }/>
       </View>
+      <TouchableOpacity style={ styles.lessonsPage } onPress={() => props.navigation.push('Lessons')}>
+        <Text style={ styles.lessonsPageText }>Открыть страничку с уроками</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -37,7 +40,7 @@ export default Subject;
 const SubjectButton = ({title}) => {
   const [clicked, setClicked] = useState(false);
   return (
-    <TouchableOpacity style={clicked ? styles.sbViewClicked : styles.sbView} onPress={() => setClicked(!clicked)}>
+    <TouchableOpacity style={ clicked ? styles.sbViewClicked : styles.sbView } onPress={ () => setClicked(!clicked) }>
       <Text style={ styles.sb }>{ title } </Text>
     </TouchableOpacity>
   );
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
       borderColor: '#C9C7CC',
       borderStyle: 'dashed'
     },
-    sbViewClicked:{
+    sbViewClicked: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -114,9 +117,17 @@ const styles = StyleSheet.create({
       flexWrap: 'wrap',
       width: '80%'
     },
-  subjectsContainer:{
+    subjectsContainer: {
       width: '100%',
-    alignItems: 'center',
+      alignItems: 'center',
+    },
+    lessonsPage: {
+      display: 'flex',
+      justifyContent: 'center'
+    },
+  lessonsPageText:{
+      fontSize:12,
+      color:'#C9C7CC'
   }
   })
 ;

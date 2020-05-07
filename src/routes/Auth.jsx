@@ -16,7 +16,7 @@ function Auth (props) {
   }
 
   useEffect(() => {
-    if (props.auth.fetched) {props.navigation.push('Subject')} else if (props.auth.error!==''){setWrong("Неправильные логин или пароль")}
+    if (props.auth.fetched) {props.navigation.push('Lessons')} else if (props.auth.error!==''){setWrong("Неправильные логин или пароль")}
   });
 
   return (

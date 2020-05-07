@@ -17,6 +17,7 @@ import thunk from 'redux-thunk';
 import Hello from './src/routes/Hello';
 import Auth from './src/routes/Auth';
 import Subject from './src/routes/Subject';
+import Lessons from './src/routes/Lessons';
 
 const Stack = createStackNavigator();
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -27,11 +28,9 @@ export default function App () {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Hello" screenOptions={ {headerShown: false} }>
           <Stack.Screen name="Hello" component={ Hello }/>
-          <Stack.Screen name="Auth" component={ Auth } options={ {
-            gestureEnabled: false,
-          } }/>
-          {/*<Stack.Screen name="Subject" component={ Subject } options={ {gestureEnabled: false} }/>*/}
-          <Stack.Screen name="Subject" component={ Subject }/>
+          <Stack.Screen name="Auth" component={ Auth } options={ {gestureEnabled: false} }/>
+          <Stack.Screen name="Subject" component={ Subject } options={ {gestureEnabled: false} }/>
+          <Stack.Screen name="Lessons" component={ Lessons }/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
