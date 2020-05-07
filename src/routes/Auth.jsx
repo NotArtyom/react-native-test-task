@@ -16,7 +16,7 @@ function Auth (props) {
   }
 
   useEffect(() => {
-    if (props.auth.fetched) {props.navigation.push('Lessons')} else if (props.auth.error!==''){setWrong("Неправильные логин или пароль")}
+    if (props.auth.fetched) {props.navigation.push('Subject')} else if (props.auth.error!==''){setWrong("Неправильные логин или пароль")}
   });
 
   return (
@@ -37,6 +37,7 @@ function Auth (props) {
         <Text style={ styles.logButtonText }>Войти</Text>
         </TouchableOpacity>
         <TouchableOpacity style={ styles.vkButton }>
+          <Image source={ require('../assets/img/logoVk.png') } />
           <Text style={ styles.vkButtonText }>Войти через ВКонтакте</Text>
         </TouchableOpacity>
         <View style={styles.regView}>
@@ -133,6 +134,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
     width: '100%',
     height: 56,
     maxHeight: 56,
@@ -140,6 +142,7 @@ const styles = StyleSheet.create({
   },
   vkButtonText: {
     fontWeight: 'bold',
+    marginLeft: 10,
     fontSize: 16,
     color:'#45668E'
   },
