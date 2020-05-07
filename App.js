@@ -30,9 +30,8 @@ export default function App () {
           <Stack.Screen name="Auth" component={ Auth } options={ {
             gestureEnabled: false,
           } }/>
-          <Stack.Screen name="Subject" component={ Subject } options={ {
-            gestureEnabled: false,
-          } }/>
+          {/*<Stack.Screen name="Subject" component={ Subject } options={ {gestureEnabled: false} }/>*/}
+          <Stack.Screen name="Subject" component={ Subject }/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

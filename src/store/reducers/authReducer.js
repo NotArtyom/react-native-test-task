@@ -32,7 +32,7 @@ export  const authReducer = (state = initState, action) => {
   return state;
 };
 
-const verifyReducer = (state = initState, action) => {
+export const verifyReducer = (state = initState, action) => {
   switch (action.type) {
     case consts.RequestedCredentials: {
       return {...state, fetching: true};
@@ -48,6 +48,7 @@ const verifyReducer = (state = initState, action) => {
     case consts.RejectedCredentials: {
       return {
         ...state,
+        error: action.payload,
         fetching: false,
         fetched: false,
       };
@@ -72,6 +73,7 @@ export const refreshReducer = (state = initState, action) => {
       case consts.RejectedCredentials: {
         return {
           ...state,
+          error: action.payload,
           fetching: false,
           fetched: false,
         };
